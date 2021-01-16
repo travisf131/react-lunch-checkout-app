@@ -8,8 +8,17 @@ const addItem = (props) => {
     return (
         <div className={styles.AddItem}>
             <div className={styles.Label}>{props.itemName}</div>
-            <button className={styles.Less} onClick={() => props.clickLess(props.type)}>Less</button>
-            <button className={styles.More} onClick={() => props.clickMore(props.type)}>More</button>
+            <button 
+                className={styles.Less} 
+                onClick={() => props.clickLess(props.type)}
+                disabled={props.disabled[props.type]}>
+                Less 
+            </button>
+            <button 
+                className={styles.More} 
+                onClick={() => props.clickMore(props.type)}>
+                More
+            </button>
         </div>
     )
 
