@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
-import styled from 'styled-components';
 
 const PRICES = {
     lettuce: 1.00,
@@ -9,13 +8,7 @@ const PRICES = {
     meat: 4.50,
     bacon: 3.25
 }
-const BASE_PRICE = 4.50
-
-const H3 = styled.h3 `
-    display: flex;
-    justify-content: center;
-    text-align: center;
- `
+export const BASE_PRICE = 4.50
 
 class BurgerBuilder extends Component {
 
@@ -55,7 +48,7 @@ class BurgerBuilder extends Component {
         if (ingredientAmount[ingName] > 0 ) {
             ingredientAmount[ingName] -= 1
 
-            //change price only if there is an ingredient to remove
+            //change price also only if there is an ingredient to remove
             newTotal = oldPrice - PRICES[ingName]   
         } 
 
@@ -66,13 +59,22 @@ class BurgerBuilder extends Component {
     }
 
     render() {
+
+        // create a copy of ingredients object and change thier values to true if the value is 0.
+        // this true or false will be sent to the AddItems "Less" button to disable it if true
+        let disabled = {...this.state.ingredients}
+        for (let key in disabled){
+            disabled[key] = disabled[key] <= 0
+        }
+
         return (
             <div>
                 <Burger ingredients={this.state.ingredients} />
-                <H3>Total Price: ${this.state.totalPrice}</H3>
                 <BuildControls 
                     clickLess={this.decreaseAmountButton} 
-                    clickMore={this.increaseAmountButton}/>
+                    clickMore={this.increaseAmountButton}
+                    disabled={disabled}
+                    totalPrice={this.state.totalPrice}/>
             </div>
         )
     }
