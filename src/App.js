@@ -24,5 +24,6 @@ export default App;
   as it's specified in the function declaration. Just pass this.functionName as a prop all the way to the child, but when
   calling it, call it as () => functionName(argument).
 - for ... in loop allows you to iterate through an object and modify each keys value "for (let key in object)"
-- Modals: 
+- Modals: the main thing is "position: fixed" in CSS. This will make it stay where it is despite scrolling. 
+      - to make it appear only after certain conditions you need to use animations
 */

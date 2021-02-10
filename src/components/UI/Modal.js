@@ -9,7 +9,7 @@ const modal = (props) => {
         <React.Fragment>
             <Backdrop show={props.display} clickOff={props.modalClose}/>
             <div className={styles.Modal} 
-                style={{ transform: props.display ? "translateY(0)" : "translateY(-100)", 
+                style={{ transform: props.display ? "translateY(0)" : "translateY(-1000px)", 
                 opacity: props.display ? '1' : '0'
             }}>
             {props.children} 
