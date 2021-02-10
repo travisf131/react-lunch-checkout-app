@@ -23,6 +23,8 @@ const orderSummary = (props) => {
                 {finalIngredientList}
             </ul>
             <p>Continue to checkout?</p>
+            <button onClick={props.modalClose}> CANCEL </button>
+            <button onClick ={props.continueOrder}> CONTINUE </button>
         </React.Fragment>
     )
 }

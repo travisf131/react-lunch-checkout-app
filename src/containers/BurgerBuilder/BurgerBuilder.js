@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
+import Modal from '../../components/UI/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 const PRICES = {
     lettuce: 1.00,
@@ -19,7 +21,8 @@ class BurgerBuilder extends Component {
             bacon: 0,
             meat: 0
         },
-        totalPrice: BASE_PRICE
+        totalPrice: BASE_PRICE,
+        orderModal: false
     }
 
     // increase ingredient amount and total price
@@ -58,6 +61,19 @@ class BurgerBuilder extends Component {
         })
     }
 
+    orderModalHandler = () => {
+        this.setState({ orderModal: true})
+    }
+
+
+    cancelOrderHandler = () => {
+        this.setState({ orderModal: false})
+    }
+
+    continueOrderHandler = () => {
+        alert("CONTINUE!"); 
+    }
+
     render() {
 
         // create a copy of ingredients object and change thier values to true if the value is 0.
@@ -69,12 +85,18 @@ class BurgerBuilder extends Component {
 
         return (
             <div>
+                <Modal display={this.state.orderModal} modalClose={this.cancelOrderHandler}>
+                    <OrderSummary ingredients={this.state.ingredients} 
+                                    modalClose={this.cancelOrderHandler}
+                                    continueOrder={this.continueOrderHandler}/>
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls 
                     clickLess={this.decreaseAmountButton} 
                     clickMore={this.increaseAmountButton}
                     disabled={disabled}
-                    totalPrice={this.state.totalPrice}/>
+                    totalPrice={this.state.totalPrice}
+                    showOrderModal={this.orderModalHandler}/>
             </div>
         )
     }

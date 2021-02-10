@@ -33,7 +33,11 @@ const buildControls = (props) => {
                     clickMore={props.clickMore}
                     disabled={props.disabled}/>
             ))}
-            <button className={styles.OrderButton} disabled={orderButtonStatus}>Order Now</button>
+            <button className={styles.OrderButton} 
+                    disabled={orderButtonStatus} 
+                    onClick={props.showOrderModal}>
+                    Order Now
+                </button>
         </div>
     )
 };
